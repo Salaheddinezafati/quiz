@@ -1,0 +1,26 @@
+ <app-spinner *ngIf="loading"></app-spinner> 
+ 
+ <div class="quiz" *ngIf="!loading">
+    <form (ngSubmit)="onSubmit()" #quizForm="ngForm" class="quiz-form">
+        <div *ngFor="let question of questions; let i = index">
+          <p>{{ question.title }}</p>
+          <div class="options">
+            <label *ngFor="let option of question.options; let j = index" class="option-label">
+              <input
+                type="radio"
+                [name]="'question' + i"
+                [value]="option"
+                [(ngModel)]="selectedOptions[i]"
+                (change)="change(question.answer, i)"
+                required
+              />
+              <span class="custom-radio"></span>
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+      
+
+</div> 
